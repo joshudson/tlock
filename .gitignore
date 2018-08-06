@@ -1,0 +1,4 @@
+tlock
+tlock.o
+core
+core.[0-9]*

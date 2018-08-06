@@ -1,0 +1,29 @@
+.TH tlock 1 "5 Aug 2018" "version 0.1"
+.SH NAME
+tlock - lock terminal after specified amount of time
+.SH SYNOPSIS
+Start daemon: tlock [-l] [idle-seconds] [--] command [arguments]
+Stop daemon: tlock -k
+Lock now: tlock
+.SH DESCRIPTION
+tlock locks the terminal when it is left idle for too long. The default idle time is 10 minutes.
+.PP
+Typical invocation is in 
+.B /etc/profile 
+as 
+.B tty | grep -q '^/dev/ttyS*[0-9][0-9]*$' && tlock -l 900 vlock
+.SH OPTIONS
+.B -l
+Log user session out if
+.I command
+cannot be executed.
+.SH BUGS
+Executing tlock from anything other than a login shell is likely to result in chaos as the login shell will
+react to the terminal being suspended, which is almost certainly not what you want. If you want to use nested
+shells or other fancy things, consider running everything under the
+.B screen
+program.
+.B screen
+makes it all better.
+.SH AUTHOR
+Joshua Hudson <joshudson@gmail.com> https://github.com/joshudson/tlock
